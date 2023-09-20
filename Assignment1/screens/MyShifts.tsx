@@ -26,7 +26,6 @@ const MyShifts = () => {
         }
     }
 
-
     const returnShifts = () => {
         const storeShifts = [];
 
@@ -43,11 +42,13 @@ const MyShifts = () => {
         }
         setSectionShifts(storeShifts)
     }
+
     useEffect(() => {
         returnShifts();
-    }, [myShifts])
+    }, [myShifts]);
+
     return (
-        <SafeAreaView style={{flex: 1, backgroundColor: 'white'}}>
+        <SafeAreaView style={styles.mainContainer}>
 
             {myShifts.length === 0 ? <View style={{flex: 1, justifyContent: "center", alignItems: 'center'}}>
                     <Text
@@ -63,26 +64,14 @@ const MyShifts = () => {
                     }}/>}
                     renderItem={({item, index, section}) => (
                         <TouchableOpacity
-                            style={{
+                            style={[{
                                 borderTopWidth: index === 0 ? 0.2 : 0,
                                 borderBottomWidth: index === section.data.length - 1 ? 0.2 : 0,
-                                paddingHorizontal: 20,
-                                paddingVertical: 15,
-                                // marginHorizontal: 10,
-                                flexDirection: "row",
-                                justifyContent: "space-between",
-                                alignItems: "center"
-                            }}
+                            }, styles.sectionCard]}
                             activeOpacity={0.8}
                         >
                             <View>
-
-                                <View style={{
-                                    flexDirection: 'row',
-                                    justifyContent: 'space-between',
-                                    width: 100,
-
-                                }}>
+                                <View style={styles.startTimeEndTime}>
                                     <Text style={{
                                         color: colors.bookedText,
                                         fontSize: 18,
@@ -91,9 +80,7 @@ const MyShifts = () => {
                                     <Text style={{
                                         color: 'black',
                                         fontSize: 18,
-
-                                    }}
-                                    >-</Text>
+                                    }}>-</Text>
                                     <Text style={{
                                         color: colors.bookedText,
                                         fontSize: 18,
@@ -115,13 +102,7 @@ const MyShifts = () => {
                                 alignItems: "center"
                             }}>
                                 <TouchableOpacity
-                                    style={{
-                                        borderRadius: 30,
-                                        borderWidth: .5,
-                                        paddingHorizontal: 25,
-                                        paddingVertical: 9,
-                                        borderColor: colors.danger,
-                                    }}
+                                    style={styles.cancelButton}
                                     activeOpacity={.5}
                                     onPress={() => {
                                         dispatch(cancelShiftAndSetFalse(item))
@@ -176,3 +157,28 @@ const MyShifts = () => {
     );
 }
 export default MyShifts
+
+const styles = StyleSheet.create({
+    mainContainer: {flex: 1, backgroundColor: 'white'},
+    sectionCard: {
+
+        paddingHorizontal: 20,
+        paddingVertical: 15,
+        // marginHorizontal: 10,
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center"
+    },
+    startTimeEndTime: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        width: 100,
+    },
+    cancelButton: {
+        borderRadius: 30,
+        borderWidth: .5,
+        paddingHorizontal: 25,
+        paddingVertical: 9,
+        borderColor: colors.danger,
+    }
+})

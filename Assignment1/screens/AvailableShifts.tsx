@@ -27,7 +27,7 @@ const AvailableShifts = () => {
     // const sortedShifts = avShifts.sort((a: any, b: any) => a.startTime - b.startTime);
     // console.log('sortedShifts', sortedShifts)
 
-    const [menuName, setMenuName] = useState<any>('Turku');
+    const [menuName, setMenuName] = useState<any>('Helsinki');
     const [area, setArea] = useState([]);
     //fetch current date
 
