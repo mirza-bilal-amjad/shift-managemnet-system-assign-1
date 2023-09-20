@@ -49,7 +49,6 @@ const MyShifts = () => {
 
     return (
         <SafeAreaView style={styles.mainContainer}>
-
             {myShifts.length === 0 ? <View style={{flex: 1, justifyContent: "center", alignItems: 'center'}}>
                     <Text
                         style={{justifyContent: "center", color: colors.primary}}
@@ -125,8 +124,6 @@ const MyShifts = () => {
                             backgroundColor: colors.grey,
                             paddingHorizontal: 18,
                             paddingVertical: 15,
-
-
                         }}>
                             <Text style={{
                                 fontSize: 15,
@@ -141,18 +138,20 @@ const MyShifts = () => {
                                 paddingHorizontal: 10,
                                 fontWeight: '400',
                                 color: colors.primaryInActive,
-                            }}>{
-                                myShifts.filter((item: any) => formatDate(new Date(item.startTime)) === title).length
-                            }
+                            }}>
+                                {
+                                    myShifts.filter((item: any) => formatDate(new Date(item.startTime)) === title).length
+                                }
                                 {
                                     myShifts.filter((item: any) => formatDate(new Date(item.startTime)) === title).length === 1 ? ' shift' : ' shifts'
-                                }, {myShifts.filter((item: any) => formatDate(new Date(item.startTime)) === title).reduce((acc: any, curr: any) => acc + (curr.endTime - curr.startTime), 0) / 3600000} hrs
+                                }, {
+                                myShifts.filter((item: any) => formatDate(new Date(item.startTime)) === title).reduce((acc: any, curr: any) => acc + (curr.endTime - curr.startTime), 0) / 3600000
+                            } hrs
                             </Text>
                         </View>
                     )}
                 />
             }
-
         </SafeAreaView>
     );
 }
