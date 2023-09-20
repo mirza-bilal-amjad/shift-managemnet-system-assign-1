@@ -8,11 +8,12 @@ import {
     View
 } from 'react-native'
 import React, {useEffect, useState} from 'react'
-import {fetchShifts} from "../../components/backend_server/fetchBackend";
+import {fetchShifts} from "../components/backend_server/fetchBackend";
 import {useDispatch, useSelector} from "react-redux";
-import {addToShifts, setBookTrue} from "../../components/redux/ShiftRedux/ShiftActions";
-import {addToMyShifts} from "../../components/redux/MyShiftRedux/MyShiftActions";
-import colors from "../../constants/colors";
+import {addToShifts, setBookTrue} from "../components/redux/ShiftRedux/ShiftActions";
+import {addToMyShifts} from "../components/redux/MyShiftRedux/MyShiftActions";
+import colors from "../constants/colors";
+import {convertTime} from "../utils/method";
 
 const AvailableShifts = () => {
     const [helsinkiShifts, setHelsinkiShifts] = useState([]);
@@ -22,24 +23,17 @@ const AvailableShifts = () => {
 
     const avShifts = useSelector((state: any) => state.ShiftReducer);
     const myShifts = useSelector((state: any) => state.MyShiftReducer)
-// sort by date
+    // sort by date
     // const sortedShifts = avShifts.sort((a: any, b: any) => a.startTime - b.startTime);
     // console.log('sortedShifts', sortedShifts)
-    console.log('myShifts', myShifts.at(0))
 
-
-    const [menuName, setMenuName] = useState<any>('Helsinki');
+    const [menuName, setMenuName] = useState<any>('Turku');
     const [area, setArea] = useState([]);
     //fetch current date
 
     const dispatch = useDispatch();
 
-    const convertTime = (time: any) => {
-        const date = new Date(time);
-        const hours = date.getHours();
-        const minutes = date.getMinutes();
-        return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`
-    }
+
     const formatDate = (date: any) => {
         const today = new Date();
         const tomorrow = new Date(today);

@@ -1,21 +1,16 @@
 import {SafeAreaView, SectionList, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
 import React, {useEffect, useState} from 'react'
 import {useDispatch, useSelector} from "react-redux";
-import {cancelMyShifts} from "../../components/redux/MyShiftRedux/MyShiftActions";
-import {cancelShiftAndSetFalse} from "../../components/redux/ShiftRedux/ShiftActions";
-import colors from "../../constants/colors";
+import {cancelMyShifts} from "../components/redux/MyShiftRedux/MyShiftActions";
+import {cancelShiftAndSetFalse} from "../components/redux/ShiftRedux/ShiftActions";
+import colors from "../constants/colors";
+import {convertTime} from "../utils/method";
 
 const MyShifts = () => {
     const myShifts = useSelector((state: any) => state.MyShiftReducer)
     const [sectionShifts, setSectionShifts] = useState<any>([])
     const dispatch = useDispatch();
 
-    const convertTime = (time: any) => {
-        const date = new Date(time);
-        const hours = date.getHours();
-        const minutes = date.getMinutes();
-        return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`
-    }
     const formatDate = (date: any) => {
         const today = new Date();
         const tomorrow = new Date(today);

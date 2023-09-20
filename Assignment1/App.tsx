@@ -2,8 +2,7 @@ import {StyleSheet, Text, View} from 'react-native'
 import React from 'react'
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import {NavigationContainer} from "@react-navigation/native";
-import MyShifts from "./screens/bottom-tabs/MyShifts";
-import MainContainer from "./screens/MainContainer";
+import MainContainer from "./navigator/MainContainer";
 
 const Stack = createNativeStackNavigator();
 

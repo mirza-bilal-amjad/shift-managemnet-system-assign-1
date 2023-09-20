@@ -1,9 +1,9 @@
 import {View} from 'react-native'
 import React from 'react'
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
-import MyShifts from "./bottom-tabs/MyShifts";
-import AvailableShifts from "./bottom-tabs/AvailableShifts";
 import colors from "../constants/colors";
+import MyShifts from "../screens/MyShifts";
+import AvailableShifts from "../screens/AvailableShifts";
 
 const BottomTabs = createBottomTabNavigator();
 
