@@ -10,8 +10,8 @@ import {
 import React, {useEffect, useState} from 'react'
 import {fetchShifts} from "../components/backend_server/fetchBackend";
 import {useDispatch, useSelector} from "react-redux";
-import {addToShifts, setBookTrue} from "../components/redux/ShiftRedux/ShiftActions";
-import {addToMyShifts} from "../components/redux/MyShiftRedux/MyShiftActions";
+import {addToShifts, setBookTrue} from "../store/redux/ShiftRedux/ShiftActions";
+import {addToMyShifts} from "../store/redux/MyShiftRedux/MyShiftActions";
 import colors from "../constants/colors";
 import {convertTime} from "../utils/method";
 

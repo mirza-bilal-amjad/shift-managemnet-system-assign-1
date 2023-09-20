@@ -1,8 +1,8 @@
 import {SafeAreaView, SectionList, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
 import React, {useEffect, useState} from 'react'
 import {useDispatch, useSelector} from "react-redux";
-import {cancelMyShifts} from "../components/redux/MyShiftRedux/MyShiftActions";
-import {cancelShiftAndSetFalse} from "../components/redux/ShiftRedux/ShiftActions";
+import {cancelMyShifts} from "../store/redux/MyShiftRedux/MyShiftActions";
+import {cancelShiftAndSetFalse} from "../store/redux/ShiftRedux/ShiftActions";
 import colors from "../constants/colors";
 import {convertTime} from "../utils/method";
 
