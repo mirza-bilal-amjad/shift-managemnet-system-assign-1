@@ -2,7 +2,7 @@ import {
     ActivityIndicator,
     FlatList,
     SectionList,
-    StatusBar,
+    StatusBar, StyleSheet,
     Text,
     TouchableOpacity,
     View
@@ -63,15 +63,10 @@ const AvailableShifts = () => {
 
         return (
             <TouchableOpacity
-                style={{
+                style={[{
                     borderTopWidth: index === 0 ? 0.2 : 0,
                     borderBottomWidth: index === section.data.length - 1 ? 0.2 : 0,
-                    paddingHorizontal: 20,
-                    paddingVertical: 10,
-                    flexDirection: "row",
-                    justifyContent: "space-between",
-                    alignItems: "center"
-                }}
+                }, styles.sectionListCard]}
                 activeOpacity={0.8}
             >
                 <View style={{
@@ -110,16 +105,10 @@ const AvailableShifts = () => {
                         fontWeight: '500'
                     }}>{item.booked ? 'Booked' : overlapFlag ? 'Overlapped' : ''}</Text>
                     <TouchableOpacity
-                        style={{
-                            borderRadius: 30,
-                            borderWidth: .5,
-                            paddingHorizontal: 25,
-                            paddingVertical: 9,
-                            width: 110,
-                            height: 50,
-                            justifyContent: 'center',
+                        style={[{
+
                             borderColor: item.booked || overlapFlag ? colors.primaryInActive : colors.secondary
-                        }}
+                        },styles.bookCancelButton]}
                         disabled={!!item.booked || overlapFlag}
                         activeOpacity={item.booked ? 0.1 : 1}
                         onPress={() => {
@@ -318,3 +307,22 @@ const AvailableShifts = () => {
     );
 }
 export default AvailableShifts
+const styles = StyleSheet.create({
+    sectionListCard: {
+        paddingHorizontal: 20,
+        paddingVertical: 10,
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center"
+    },
+    bookCancelButton: {
+        borderRadius: 30,
+        borderWidth: .5,
+        paddingHorizontal: 25,
+        paddingVertical: 9,
+        width: 110,
+        height: 50,
+        justifyContent: 'center',
+    }
+
+});
