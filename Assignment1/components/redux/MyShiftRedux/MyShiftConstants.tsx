@@ -1,0 +1,2 @@
+export const ADD_TO_MY_SHIFTS = "ADD_TO_MY_SHIFTS";
+export const CANCEL_MY_SHIFT = "CANCEL_MY_SHIFT";
