@@ -1,28 +1,29 @@
 import {View} from 'react-native'
 import React from 'react'
 import {createBottomTabNavigator} from "@react-navigation/bottom-tabs";
-import colors from "../constants/colors";
 import MyShifts from "../screens/MyShifts";
 import AvailableShifts from "../screens/AvailableShifts";
+import useTheme from "../hooks/useTheme";
 
 const BottomTabs = createBottomTabNavigator();
 
 const MainContainer = () => {
+    const {colors} = useTheme();
     return (
         <BottomTabs.Navigator initialRouteName={'My Shifts'}
                               screenOptions={{
-
                                   tabBarLabelStyle: {
                                       position: 'absolute',
                                       fontSize: 16,
                                       top: 20,
                                       fontWeight: '900',
                                   },
-
                                   tabBarStyle: {
                                       flex: 1,
                                       maxHeight: 60,
-                                      backgroundColor: colors.grey,
+                                      backgroundColor: colors.background,
+                                      borderBottomWidth: 0.1,
+                                      borderTopColor: colors.primaryInActive,
                                   },
                                   tabBarActiveTintColor: colors.primary,
 
@@ -38,7 +39,10 @@ const MainContainer = () => {
                                    ),
                                    headerStyle: {
                                        height: 70,
-                                       borderBottomWidth: 1,
+                                       borderBottomWidth: 0.145,
+                                       borderBottomColor: colors.primaryInActive,
+                                       backgroundColor: colors.background,
+                                       elevation: 0
                                    }
                                }}/>
             <BottomTabs.Screen name={'Available Shifts'} component={AvailableShifts}

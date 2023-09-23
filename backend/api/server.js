@@ -1,7 +1,7 @@
 import Hapi from 'hapi';
 
 const server = new Hapi.Server({
-    host: '192.168.20.78',
+    host: '192.168.0.228',
     port: '3000',
     routes: {
         cors: {origin: 'ignore'},

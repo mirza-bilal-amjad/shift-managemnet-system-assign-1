@@ -1,6 +1,6 @@
 import Axios from 'axios';
 
-const API_BASE_URL = 'http://192.168.20.78:3000'; // Replace with your server's URL
+const API_BASE_URL = 'http://192.168.0.228:3000'; // Replace with your server's URL
 
 const fetchShifts = async () => {
     try {

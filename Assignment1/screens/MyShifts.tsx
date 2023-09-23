@@ -1,13 +1,14 @@
-import {SafeAreaView, SectionList, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
+import {SafeAreaView, SectionList, StatusBar, StyleSheet, Text, TouchableOpacity, View} from 'react-native'
 import React, {useEffect, useState} from 'react'
 import {useDispatch, useSelector} from "react-redux";
 import {cancelMyShifts} from "../store/redux/MyShiftRedux/MyShiftActions";
 import {cancelShiftAndSetFalse} from "../store/redux/ShiftRedux/ShiftActions";
-import colors from "../constants/colors";
 import {convertTime} from "../utils/method";
+import useTheme from "../hooks/useTheme";
 
 const MyShifts = () => {
-    const myShifts = useSelector((state: any) => state.MyShiftReducer)
+    const {colors} = useTheme();
+    const myShifts = useSelector((state: any) => state.MyShiftReducer);
     const [sectionShifts, setSectionShifts] = useState<any>([])
     const dispatch = useDispatch();
 
@@ -48,7 +49,7 @@ const MyShifts = () => {
     }, [myShifts]);
 
     return (
-        <SafeAreaView style={styles.mainContainer}>
+        <SafeAreaView style={[styles.mainContainer, {backgroundColor: colors.background}]}>
             {myShifts.length === 0 ? <View style={{flex: 1, justifyContent: "center", alignItems: 'center'}}>
                     <Text
                         style={{justifyContent: "center", color: colors.primary}}
@@ -62,12 +63,11 @@ const MyShifts = () => {
                         height: 0
                     }}/>}
                     renderItem={({item, index, section}) => (
-                        <TouchableOpacity
+                        <View
                             style={[{
                                 borderTopWidth: index === 0 ? 0.2 : 0,
                                 borderBottomWidth: index === section.data.length - 1 ? 0.2 : 0,
                             }, styles.sectionCard]}
-                            activeOpacity={0.8}
                         >
                             <View>
                                 <View style={styles.startTimeEndTime}>
@@ -101,7 +101,7 @@ const MyShifts = () => {
                                 alignItems: "center"
                             }}>
                                 <TouchableOpacity
-                                    style={styles.cancelButton}
+                                    style={[styles.cancelButton, {borderColor: colors.danger}]}
                                     activeOpacity={.5}
                                     onPress={() => {
                                         dispatch(cancelShiftAndSetFalse(item))
@@ -116,12 +116,12 @@ const MyShifts = () => {
                                         }}>Cancel</Text>
                                 </TouchableOpacity>
                             </View>
-                        </TouchableOpacity>
+                        </View>
                     )}
                     renderSectionHeader={({section: {title}}) => (
                         <View style={{
                             flexDirection: 'row',
-                            backgroundColor: colors.grey,
+                            backgroundColor: colors.background,
                             paddingHorizontal: 18,
                             paddingVertical: 15,
                         }}>
@@ -153,12 +153,13 @@ const MyShifts = () => {
                 />
             }
         </SafeAreaView>
-    );
+    )
+        ;
 }
 export default MyShifts
 
 const styles = StyleSheet.create({
-    mainContainer: {flex: 1, backgroundColor: 'white'},
+    mainContainer: {flex: 1},
     sectionCard: {
 
         paddingHorizontal: 20,
@@ -178,6 +179,6 @@ const styles = StyleSheet.create({
         borderWidth: .5,
         paddingHorizontal: 25,
         paddingVertical: 9,
-        borderColor: colors.danger,
+        // borderColor: colors.danger,
     }
 })

@@ -1,6 +1,6 @@
 import {
     ActivityIndicator,
-    FlatList,
+    FlatList, SafeAreaView,
     SectionList,
     StatusBar, StyleSheet,
     Text,
@@ -12,10 +12,12 @@ import {fetchShifts} from "../components/backend_server/fetchBackend";
 import {useDispatch, useSelector} from "react-redux";
 import {addToShifts, setBookTrue} from "../store/redux/ShiftRedux/ShiftActions";
 import {addToMyShifts} from "../store/redux/MyShiftRedux/MyShiftActions";
-import colors from "../constants/colors";
 import {convertTime} from "../utils/method";
+import useTheme from "../hooks/useTheme";
 
 const AvailableShifts = () => {
+    const {colors} = useTheme();
+
     const [helsinkiShifts, setHelsinkiShifts] = useState([]);
     const [tampereShifts, setTampereShifts] = useState([]);
     const [turkuShifts, setTurkuShifts] = useState([]);
@@ -108,7 +110,7 @@ const AvailableShifts = () => {
                         style={[{
 
                             borderColor: item.booked || overlapFlag ? colors.primaryInActive : colors.secondary
-                        },styles.bookCancelButton]}
+                        }, styles.bookCancelButton]}
                         disabled={!!item.booked || overlapFlag}
                         activeOpacity={item.booked ? 0.1 : 1}
                         onPress={() => {
@@ -222,13 +224,7 @@ const AvailableShifts = () => {
     }, [avShifts]);
     // @ts-ignore
     return (
-        <View style={{flex: 1, backgroundColor: 'white'}}>
-
-            <StatusBar
-                backgroundColor={'white'}
-                barStyle={'dark-content'}
-                showHideTransition={'none'}
-            />
+        <SafeAreaView style={{flex: 1, backgroundColor: colors.background}}>
 
             <View
                 style={{
@@ -236,17 +232,19 @@ const AvailableShifts = () => {
                 }}
             >
                 <FlatList
+
                     data={area}
                     renderItem={({item}) => (
                         <TouchableOpacity
                             activeOpacity={.8}
+
                             onPress={() => {
                                 // @ts-ignore
                                 setMenuName(item.area);
                             }}
                         >
                             <Text style={{
-                                padding: 20,
+                                padding: 10,
                                 // backgroundColor: 'pink',
                                 borderRadius: 20,
                                 color: item.area === menuName
@@ -267,7 +265,8 @@ const AvailableShifts = () => {
                         paddingHorizontal: 10,
                         alignItems: "center",
                         justifyContent: "space-between",
-                        backgroundColor: 'white'
+                        backgroundColor: colors.background,
+
                     }}
                 />
                 <Text style={{
@@ -297,13 +296,13 @@ const AvailableShifts = () => {
                             fontSize: 15,
                             fontWeight: 'bold',
                             color: colors.bookedText,
-                            backgroundColor: colors.grey
+                            backgroundColor: colors.background
                         }}>
                             {title}
                         </Text>
                     )}
                 />}
-        </View>
+        </SafeAreaView>
     );
 }
 export default AvailableShifts
