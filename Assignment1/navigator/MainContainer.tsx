@@ -21,12 +21,12 @@ const MainContainer = () => {
                                   tabBarStyle: {
                                       flex: 1,
                                       maxHeight: 60,
-                                      backgroundColor: colors.background,
+                                      backgroundColor: colors.tertiary,
                                       borderBottomWidth: 0.1,
                                       borderTopColor: colors.primaryInActive,
                                   },
                                   tabBarActiveTintColor: colors.primary,
-
+                                  tabBarInactiveTintColor: colors.primaryInActive,
                               }}
         >
             <BottomTabs.Screen name={'My Shifts'} component={MyShifts}

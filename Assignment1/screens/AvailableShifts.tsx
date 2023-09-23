@@ -64,12 +64,13 @@ const AvailableShifts = () => {
         };
 
         return (
-            <TouchableOpacity
+            <View
                 style={[{
                     borderTopWidth: index === 0 ? 0.2 : 0,
                     borderBottomWidth: index === section.data.length - 1 ? 0.2 : 0,
+                    borderBottomColor: colors.bookedText,
+                    borderTopColor: colors.bookedText,
                 }, styles.sectionListCard]}
-                activeOpacity={0.8}
             >
                 <View style={{
                     flexDirection: 'row',
@@ -135,7 +136,7 @@ const AvailableShifts = () => {
                         }
                     </TouchableOpacity>
                 </View>
-            </TouchableOpacity>
+            </View>
         )
     }
 
@@ -286,9 +287,11 @@ const AvailableShifts = () => {
                     ItemSeparatorComponent={() => <Text style={{
                         borderBottomWidth: .2,
                         // marginHorizontal: 10,
+                        borderBottomColor: colors.bookedText,
                         height: 0
                     }}/>}
                     renderItem={SectionListItem}
+                    showsVerticalScrollIndicator={false}
                     renderSectionHeader={({section: {title}}) => (
                         <Text style={{
                             paddingHorizontal: 20,
@@ -296,7 +299,7 @@ const AvailableShifts = () => {
                             fontSize: 15,
                             fontWeight: 'bold',
                             color: colors.bookedText,
-                            backgroundColor: colors.background
+                            backgroundColor: colors.tertiary
                         }}>
                             {title}
                         </Text>

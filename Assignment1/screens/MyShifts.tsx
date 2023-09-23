@@ -59,14 +59,17 @@ const MyShifts = () => {
                     keyExtractor={(item, index) => item + index}
                     ItemSeparatorComponent={() => <Text style={{
                         borderBottomWidth: .2,
-                        // marginHorizontal: 10,
+                        borderBottomColor: colors.bookedText,
                         height: 0
                     }}/>}
+                    showsVerticalScrollIndicator={false}
                     renderItem={({item, index, section}) => (
                         <View
                             style={[{
                                 borderTopWidth: index === 0 ? 0.2 : 0,
                                 borderBottomWidth: index === section.data.length - 1 ? 0.2 : 0,
+                                borderBottomColor: colors.bookedText,
+                                borderTopColor: colors.bookedText,
                             }, styles.sectionCard]}
                         >
                             <View>
@@ -77,8 +80,9 @@ const MyShifts = () => {
                                         fontWeight: '400'
                                     }}>{convertTime(item.startTime)}</Text>
                                     <Text style={{
-                                        color: 'black',
+                                        color: colors.bookedText,
                                         fontSize: 18,
+
                                     }}>-</Text>
                                     <Text style={{
                                         color: colors.bookedText,
@@ -121,7 +125,7 @@ const MyShifts = () => {
                     renderSectionHeader={({section: {title}}) => (
                         <View style={{
                             flexDirection: 'row',
-                            backgroundColor: colors.background,
+                            backgroundColor: colors.tertiary,
                             paddingHorizontal: 18,
                             paddingVertical: 15,
                         }}>
